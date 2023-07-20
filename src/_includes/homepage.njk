@@ -1,0 +1,24 @@
+---
+layout: base.njk
+---
+
+<header>
+  <h1>{{ homepage.title or site.title }}</h1>
+
+  {% set subtitle = homepage.subtitle%} {% if subtitle %}
+  <p>{{ subtitle }}</p>
+  {% endif %}
+</header>
+<main>
+  <hr />
+  <ul class="blog-listing">
+    {% for post in collections.posts | reverse %}
+    <li>
+      <a class="blog-list-item" href="{{ post.url }}/index.html">
+      <h3>{{ post.data.title }}</h3>
+      <time datetime="{{ post.date }}">{{ post.date | formatDate }}</time>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
